@@ -13,7 +13,7 @@
 	
 	function GoogleTransliteration() 
 	{
-		add_action('wp_head', 'wpt_head_scripts');
+		add_action('wp_head', 'wp_head_scripts');
 	}
 	
 	add_action('admin_menu', 'g_trans_menu');
@@ -26,8 +26,7 @@
 	function get_g_trans_options()
 	{
 		$g_trans_options = array('default_language' => 'fa',
-								'enable_comment_form' => 'true',
-								'enable_new_post_form' => 'true');
+								'enable_comment_form' => 'true');
 		$g_trans_save_options = get_option('g_trans_options');
 		if (!empty($g_trans_save_options))
 		{
@@ -76,8 +75,6 @@
 								</select>
 				</p>
 				<p><input name="enable_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_comment_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('enable for comment form.', 'google-transliteration'); ?></p>
-				<h3><?php _e('Admin Pages Settings:', 'google_transliteration'); ?></h3>
-				<p><input name="enable_new_post_form" value="true" type="checkbox" <?php if ( $g_trans_options['enable_new_post_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('enable for new post page', 'google-transliteration'); ?></p>
 				<div class="submit">
 					<input type="submit" name="update_auad_settings" value="<?php _e('Save Changes', 'google-transliteration') ?>" />
 				</div>
@@ -86,7 +83,7 @@
 		<?php
 	}
 							
-	function wpt_head_scripts() 
+	function wp_head_scripts() 
 	{	
 		if (is_single() || is_page()) 
 		{
