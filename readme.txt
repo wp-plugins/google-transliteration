@@ -19,6 +19,10 @@ This plugin offers Complete language transliteration support for your wordpress 
 
 == Changelog ==
 
+= 0.6 =
+* Add support for persian language
+* fixed a bug where plugin does not work when admin was loged in to the blog.
+
 = 0.5 =
 * base version
 

@@ -4,12 +4,12 @@
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
 	Description: Google Transliteration support for wordpress.
-	Version: 0.5
+	Version: 0.6
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/
 
-	load_plugin_textdomain('google_transliteration', NULL, dirname(plugin_basename(__FILE__)) . "/languages");
+	load_plugin_textdomain('google-transliteration', NULL, dirname(plugin_basename(__FILE__)) . "/languages");
 	
 	function GoogleTransliteration() 
 	{
@@ -55,9 +55,9 @@
 		} ?>
 		<div class=wrap>
 			<form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
-				<h2><?php _e('Google Transliteration Settings', 'google_transliteration'); ?></h2>
-				<h3><?php _e('General Settings:', 'google_transliteration'); ?></h3>
-				<p><?php _e('Default Language:', 'google_transliteration'); ?> <select name="default_language">
+				<h2><?php _e('Google Transliteration Settings', 'google-transliteration'); ?></h2>
+				<h3><?php _e('General Settings:', 'google-transliteration'); ?></h3>
+				<p><?php _e('Default Language:', 'google-transliteration'); ?> <select name="default_language">
 								  
 								  <option value="fa" <?php if ($g_trans_options['default_language'] == 'fa' ) echo ' selected="selected" '; ?> >فارسی</option>
 								  <option value="ar" <?php if ($g_trans_options['default_language'] == 'ar' ) echo ' selected="selected" '; ?> >العربیه</option>
@@ -85,9 +85,10 @@
 							
 	function wp_head_scripts() 
 	{	
-		if (is_single() || is_page()) 
+		$g_trans_options = get_g_trans_options();
+		if ((is_single() || is_page()) and $g_trans_options['enable_comment_form'] == 'true') 
 		{
-			$g_trans_options = get_g_trans_options();
+			
 		?>		
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 		<script type="text/javascript">
