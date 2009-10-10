@@ -14,7 +14,7 @@ This plugin offers Complete language transliteration support for your wordpress 
 
 == Installation ==
 
-1. Upload `advanced-user-agent-displayer` to the `/wp-content/plugins/` directory
+1. Upload `google-transliteration` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
