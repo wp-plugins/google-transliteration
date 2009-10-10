@@ -108,7 +108,7 @@
 				shortcutKey: 'ctrl+g'
 			};
 			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
-			var ids = [ "author", "comment"];
+			var ids = [ "comment"];
 			transliterationControl.makeTransliteratable(ids);		
 			transliterationControl.enableTransliteration();
 		  } 
