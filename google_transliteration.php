@@ -4,7 +4,7 @@
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
 	Description: Google Transliteration support for wordpress.
-	Version: 0.6
+	Version: 0.6.1
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/
@@ -14,6 +14,7 @@
 	function GoogleTransliteration() 
 	{
 		add_action('wp_head', 'wp_head_scripts');
+		add_action('comment_form', 'comment_form');
 	}
 	
 	add_action('admin_menu', 'g_trans_menu');
@@ -35,6 +36,27 @@
 		}
 		update_option('g_trans_options', $g_trans_options);
 		return $g_trans_options;
+	}
+	
+	function comment_form()
+    {
+		?>
+		<div style="display:left;align:left; padding-top:7px;" id='translControl'>
+		<small>(To type in English, press Ctrl+g)</small>
+		</div>
+		<div id="errorDiv"></div>
+		<script language="JavaScript" type="text/javascript">
+			var urlp;            
+			var mozilla = document.getElementById && !document.all;			
+            var url = document.getElementById("url");
+			if (mozilla)
+	            urlp = url.parentNode;
+			else
+				    urlp = url.parentElement;
+            var sub = document.getElementById("translControl");
+            urlp.appendChild(sub, url);
+        </script>	
+		<?php
 	}
 
 	function g_trans_options()
