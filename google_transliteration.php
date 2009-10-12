@@ -4,7 +4,7 @@
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
 	Description: Google Transliteration support for wordpress.
-	Version: 0.7
+	Version: 0.7.0.1
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/

@@ -19,6 +19,10 @@ This plugin offers Complete language transliteration support for your wordpress 
 
 == Changelog ==
 
+= 0.7.0.1 =
+
+* some persian language translation fixed.
+
 = 0.7 =
 * Add ability to set the correct comment field id due to different wordpress themes’ settings.
 
