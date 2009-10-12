@@ -32,7 +32,7 @@ msgstr "زبان پیش فرض:"
 
 #: google_transliteration.php:100
 msgid "Comment Settings:"
-msgstr ""
+msgstr "تنظیمات دیدگاه ها:"
 
 #: google_transliteration.php:101
 msgid "enable for comment form."
