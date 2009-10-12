@@ -4,7 +4,7 @@
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
 	Description: Google Transliteration support for wordpress.
-	Version: 0.6.1
+	Version: 0.7
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/
@@ -27,7 +27,8 @@
 	function get_g_trans_options()
 	{
 		$g_trans_options = array('default_language' => 'fa',
-								'enable_comment_form' => 'true');
+								'enable_comment_form' => 'true',
+								'comment_form_id' => 'comment');
 		$g_trans_save_options = get_option('g_trans_options');
 		if (!empty($g_trans_save_options))
 		{
@@ -62,16 +63,16 @@
 	function g_trans_options()
 	{
 		$g_trans_options = get_g_trans_options();
-		if (isset($_POST['update_auad_settings']))
+		if (isset($_POST['update_g_trans_settings']))
 		{
 			$g_trans_options['default_language'] = isset($_POST['default_language']) ? $_POST['default_language'] : 'fa';
 			$g_trans_options['enable_comment_form'] = isset($_POST['enable_comment_form']) ? $_POST['enable_comment_form'] : 'false';
-			$g_trans_options['enable_new_post_form'] = isset($_POST['enable_new_post_form']) ? $_POST['enable_new_post_form'] : 'false';
+			$g_trans_options['comment_form_id'] = isset($_POST['comment_form_id']) ? $_POST['comment_form_id'] : 'comment';
 
 			update_option('g_trans_options', $g_trans_options);
 			?>
 			<div class="updated">
-				<p><strong><?php _e("Settings Saved.","google");?></strong></p>
+				<p><strong><?php _e("Settings Saved.","google-transliteration");?></strong></p>
 			</div>
 			<?php
 		} ?>
@@ -96,9 +97,14 @@
 								  <option value="ur" <?php if ($g_trans_options['default_language'] == 'ur' ) echo ' selected="selected" '; ?> >Urdu</option>
 								</select>
 				</p>
+				<h3><?php _e('Comment Settings:', 'google-transliteration'); ?></h3>
 				<p><input name="enable_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_comment_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('enable for comment form.', 'google-transliteration'); ?></p>
+				<p><?php _e('Comment text field id: ', 'google-transliteration'); ?> 
+					<input name="comment_form_id" style="direction:ltr;" type="text" value="<?php echo $g_trans_options['comment_form_id']; ?>" /> 
+					<small><?php _e('Default for Wordpress Themes is <b>comment</b>', 'google-transliteration'); ?></small>
+				</p>
 				<div class="submit">
-					<input type="submit" name="update_auad_settings" value="<?php _e('Save Changes', 'google-transliteration') ?>" />
+					<input type="submit" name="update_g_trans_settings" value="<?php _e('Save Changes', 'google-transliteration') ?>" />
 				</div>
 			</form>
 		</div>
@@ -128,7 +134,7 @@
 				shortcutKey: 'ctrl+g'
 			};
 			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
-			var ids = [ "comment"];
+			var ids = ['<?php echo $g_trans_options['comment_form_id']; ?>'];
 			transliterationControl.makeTransliteratable(ids);		
 			transliterationControl.enableTransliteration();
 		  } 

@@ -19,6 +19,9 @@ This plugin offers Complete language transliteration support for your wordpress 
 
 == Changelog ==
 
+= 0.7 =
+* Add ability to set the correct comment field id due to different wordpress themes’ settings.
+
 = 0.6.1 =
 * Add support for Italian language
 
