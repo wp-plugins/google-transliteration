@@ -204,13 +204,17 @@
 			var options = {
 				sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
 				destinationLanguage: ['<?php echo $g_trans_options['default_language']; ?>'],
-				transliterationEnabled: <?php echo $g_trans_options['enable_default_comment_form']; ?>,
+				transliterationEnabled: true,
 				shortcutKey: 'ctrl+g'
 			};
 			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
 			var ids = ['<?php echo $g_trans_options['comment_form_id']; ?>'];
-			transliterationControl.makeTransliteratable(ids);		
-			transliterationControl.enableTransliteration();
+			transliterationControl.makeTransliteratable(ids);
+			<?php if($g_trans_options['enable_default_comment_form'] == 'true') {  ?>
+				transliterationControl.enableTransliteration();
+			<?php } else { ?>
+				transliterationControl.disableTransliteration();
+			<?php } ?>
 			transliterationControl.addEventListener(
 				google.elements.transliteration.TransliterationControl.EventType.STATE_CHANGED,
 				transliterateStateChangeHandler);
