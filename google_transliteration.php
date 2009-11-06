@@ -118,9 +118,6 @@
 	{
 		add_action('wp_head', 'wp_head_scripts');
 		add_action('comment_form', 'comment_form');
-		add_action('admin_print_scripts-post-new.php', 'wp_post_admin_scripts');	
-		add_action('admin_print_scripts-post.php', 'wp_post_admin_scripts');
-		add_action('edit_form_advanced', 'post_form');
 	}
 
 	function g_trans_options()
