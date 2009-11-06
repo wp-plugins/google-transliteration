@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Google Transliteration\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/google-transliteration\n"
+"POT-Creation-Date: 2009-10-12 07:01+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Reza Moallemi <reza.ce84@gmail.com>\n"
+"Language-Team: Reza Moallemi <rm.allmails@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: google_transliteration.php:24
+msgid "Google Transliteration"
+msgstr "نویسه گردان گوگل"
+
+#: google_transliteration.php:75
+msgid "Settings Saved."
+msgstr "تنظیمات ذخیره شد."
+
+#: google_transliteration.php:81
+msgid "Google Transliteration Settings"
+msgstr "تنظیمات نویسه گردان گوگل"
+
+#: google_transliteration.php:82
+msgid "General Settings:"
+msgstr "تنظیمات عمومی:"
+
+#: google_transliteration.php:83
+msgid "Default Language:"
+msgstr "زبان پیش فرض:"
+
+#: google_transliteration.php:100
+msgid "Comment Settings:"
+msgstr "تنظیمات دیدگاه ها:"
+
+#: google_transliteration.php:101
+msgid "enable for comment form."
+msgstr "فعال سازی برای فرم دیدگاه ها"
+
+#: google_transliteration.php:102
+msgid "Comment text field id: "
+msgstr "شناسه ی فیلد متن دیدگاه:"
+
+#: google_transliteration.php:104
+msgid "Default for Wordpress Themes is <b>comment</b>"
+msgstr "شناسه ی پیش فرض در پوشته های وردپرس <b>comment</b> می باشد."
+
+#: google_transliteration.php:107
+msgid "Save Changes"
+msgstr "ذخیره تغییرات"
+

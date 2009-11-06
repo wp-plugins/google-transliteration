@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Google Transliteration\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/google-transliteration\n"
+"POT-Creation-Date: 2009-10-12 07:01+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Reza Moallemi <reza.ce84@gmail.com>\n"
+"Language-Team: Reza Moallemi <rm.allmails@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: google_transliteration.php:24
+msgid "Google Transliteration"
+msgstr "Google Transliteration"
+
+#: google_transliteration.php:75
+msgid "Settings Saved."
+msgstr "Settings Saved."
+
+#: google_transliteration.php:81
+msgid "Google Transliteration Settings"
+msgstr "Google Transliteration Settings"
+
+#: google_transliteration.php:82
+msgid "General Settings:"
+msgstr "General Settings:"
+
+#: google_transliteration.php:83
+msgid "Default Language:"
+msgstr "Default Language:"
+
+#: google_transliteration.php:100
+msgid "Comment Settings:"
+msgstr "Comment Settings:"
+
+#: google_transliteration.php:101
+msgid "enable for comment form."
+msgstr "enable for comment form."
+
+#: google_transliteration.php:102
+msgid "Comment text field id: "
+msgstr "Comment text field id: "
+
+#: google_transliteration.php:104
+msgid "Default for Wordpress Themes is <b>comment</b>"
+msgstr "Default for Wordpress Themes is <b>comment</b>"
+
+#: google_transliteration.php:107
+msgid "Save Changes"
+msgstr "Save Changes"
+

@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/google-transliteration\n"
+"POT-Creation-Date: 2009-10-12 07:01+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: google_transliteration.php:24
+msgid "Google Transliteration"
+msgstr ""
+
+#: google_transliteration.php:75
+msgid "Settings Saved."
+msgstr ""
+
+#: google_transliteration.php:81
+msgid "Google Transliteration Settings"
+msgstr ""
+
+#: google_transliteration.php:82
+msgid "General Settings:"
+msgstr ""
+
+#: google_transliteration.php:83
+msgid "Default Language:"
+msgstr ""
+
+#: google_transliteration.php:100
+msgid "Comment Settings:"
+msgstr ""
+
+#: google_transliteration.php:101
+msgid "enable for comment form."
+msgstr ""
+
+#: google_transliteration.php:102
+msgid "Comment text field id: "
+msgstr ""
+
+#: google_transliteration.php:104
+msgid "Default for Wordpress Themes is <b>comment</b>"
+msgstr ""
+
+#: google_transliteration.php:107
+msgid "Save Changes"
+msgstr ""
