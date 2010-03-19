@@ -173,8 +173,8 @@
 				<p><input type="radio" value="single" name="control_type" <?php if ($g_trans_options['control_type'] == 'single' ) echo ' checked="checked" '; ?> /> 
 					<?php _e('Default Language:', 'google-transliteration'); ?> <select name="default_language">
 								  
-								  <option value="fa" <?php if ($g_trans_options['default_language'] == 'fa' ) echo ' selected="selected" '; ?> >?????</option>
-								  <option value="ar" <?php if ($g_trans_options['default_language'] == 'ar' ) echo ' selected="selected" '; ?> >???????</option>
+								  <option value="fa" <?php if ($g_trans_options['default_language'] == 'fa' ) echo ' selected="selected" '; ?> >Persian</option>
+								  <option value="ar" <?php if ($g_trans_options['default_language'] == 'ar' ) echo ' selected="selected" '; ?> >Arabic</option>
 								  <option value="bn" <?php if ($g_trans_options['default_language'] == 'bn' ) echo ' selected="selected" '; ?> >Bengali</option>
 								  <option value="gu" <?php if ($g_trans_options['default_language'] == 'gu' ) echo ' selected="selected" '; ?> >Gujarati</option>
 								  <option value="hi" <?php if ($g_trans_options['default_language'] == 'hi' ) echo ' selected="selected" '; ?> >Hindi</option>
