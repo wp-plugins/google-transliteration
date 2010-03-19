@@ -14,8 +14,8 @@ This plugin offers Complete language transliteration support for your wordpress 
 
 What's New in version 1.0:
 
-    * Now you can enable/disable Google Transliteration by default.
-	* Commenters can easily toggle Google Transliteration by checking a checkbox.
+    * Users can now select from a list of languages for transliteration in the comment form.
+	* Now you can customize the positon of transliteration options in the comment form.
 	* Fixed a bug where checkbox in the coment form had problems with some themes.
 
 == Installation ==
