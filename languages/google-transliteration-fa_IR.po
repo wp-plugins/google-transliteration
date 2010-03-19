@@ -1,0 +1,93 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Google Transliteration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-11-06 16:05+0330\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Reza Moallemi <rm.allmails@gmail.com>\n"
+"Language-Team: Reza Moallemi <rm.allmails@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: google_transliteration.php:18
+msgid "Google Transliteration"
+msgstr "نویسه گردان گوگل"
+
+#: google_transliteration.php:45
+msgid "Enable Google Transliteration.(To type in English, press Ctrl+g)"
+msgstr "به صورت خودکار کلمات فینگلیش را به فارسی تبدیل کن. در صورتی که می خواهید انگلیسی تایپ کنید Ctrl+g را فشار دهید."
+
+#: google_transliteration.php:139
+msgid "Settings Saved."
+msgstr "تنظیمات ذخیره شد."
+
+#: google_transliteration.php:145
+msgid "Google Transliteration Settings"
+msgstr "تنظیمات نویسه گردان گوگل"
+
+#: google_transliteration.php:146
+msgid "General Settings:"
+msgstr "تنظیمات عمومی:"
+
+#: google_transliteration.php:147
+msgid "Default Language:"
+msgstr "زبان پیش فرض:"
+
+#: google_transliteration.php:164
+msgid "Comment Settings:"
+msgstr "تنظیمات دیدگاه ها:"
+
+#: google_transliteration.php:165
+msgid "Enable for comment form."
+msgstr "فعال سازی برای فرم دیدگاه ها."
+
+#: google_transliteration.php:166
+msgid "Enable Google Transliteration by default."
+msgstr "به صورت پیش فرض برای نظرهندگان فعال باشد."
+
+#: google_transliteration.php:167
+msgid "Comment text field id: "
+msgstr "شناسه ی فیلد متن دیدگاه:"
+
+#: google_transliteration.php:169
+msgid "Default for Wordpress Themes is <b>comment</b>"
+msgstr "شناسه ی پیش فرض در پوشته های وردپرس <b>comment</b> می باشد."
+
+#: google_transliteration.php:172
+msgid "Save Changes"
+msgstr "ذخیره ی تغییرات"
+
+#: google_transliteration.php:176
+msgid "My other plugins for wordpress:"
+msgstr "دیگر افزونه های من برای وردپرس:"
+
+#: google_transliteration.php:178
+msgid "Advanced User Agent Displayer "
+msgstr "نمایش دهنده اطلاعات نظردهندگان"
+
+#: google_transliteration.php:179
+#: google_transliteration.php:183
+msgid "Download"
+msgstr "دریافت"
+
+#: google_transliteration.php:180
+msgid "http://www.moallemi.ir/en/blog/2009/09/20/advanced-user-agent-displayer/"
+msgstr "http://www.moallemi.ir/blog/1388/07/24/%D8%A7%D9%81%D8%B2%D9%88%D9%86%D9%87-%DB%8C-%D9%86%D9%85%D8%A7%DB%8C%D8%B4-%D8%AF%D9%87%D9%86%D8%AF%D9%87-%DB%8C-%D8%A7%D8%B7%D9%84%D8%A7%D8%B9%D8%A7%D8%AA-%D9%86%D8%B8%D8%B1-%D8%AF%D9%87%D9%86%D8%AF/"
+
+#: google_transliteration.php:180
+#: google_transliteration.php:184
+msgid "More Information"
+msgstr "اطلاعات بیشتر"
+
+#: google_transliteration.php:182
+msgid "Behnevis Transliteration "
+msgstr "نویسه گردان بهنویس"
+
+#: google_transliteration.php:238
+msgid "Settings"
+msgstr "تنظیمات"
+
