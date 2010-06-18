@@ -4,7 +4,7 @@
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
 	Description: Google Transliteration support for wordpress.
-	Version: 1.0
+	Version: 1.1
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/
@@ -36,7 +36,7 @@
 		return $g_trans_options;
 	}
 	
-	function comment_form()
+	function g_t_comment_form()
     {
 		$g_trans_options = get_g_trans_options();
 		if ($g_trans_options['enable_comment_form'] == 'true') 
@@ -138,7 +138,7 @@
 	function GoogleTransliteration() 
 	{
 		add_action('wp_head', 'wp_head_scripts');
-		add_action('comment_form', 'comment_form');
+		add_action('comment_form', 'g_t_comment_form');
 	}
 
 	function g_trans_options()
@@ -203,6 +203,10 @@
 				<div>
 					<h4><?php _e('My other plugins for wordpress:', 'google-transliteration'); ?></h4>
 					<ul>
+						<li><b><font color="red">- <?php _e('Google Reader Stats ', 'google-transliteration'); ?></font></b>
+							(<a href="http://wordpress.org/extend/plugins/google-reader-stats/"><?php _e('Download', 'google-transliteration'); ?></a> | 
+							<a href="<?php _e('http://www.moallemi.ir/en/blog/2010/06/03/google-reader-stats-for-wordpress/', 'google-transliteration'); ?>"><?php _e('More Information', 'google-transliteration'); ?></a>)
+						</li>
 						<li><b>- <?php _e('Advanced User Agent Displayer ', 'google-transliteration'); ?></b>
 							(<a href="http://wordpress.org/extend/plugins/advanced-user-agent-displayer/"><?php _e('Download', 'google-transliteration'); ?></a> | 
 							<a href="<?php _e('http://www.moallemi.ir/en/blog/2009/09/20/advanced-user-agent-displayer/', 'google-transliteration'); ?>"><?php _e('More Information', 'google-transliteration'); ?></a>)
