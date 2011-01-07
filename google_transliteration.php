@@ -3,8 +3,8 @@
 	/*
 	Plugin Name: Google Transliteration
 	Plugin URI: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
-	Description: Google Transliteration support for wordpress.
-	Version: 1.1
+	Description: Google Transliteration support for WordPress.
+	Version: 1.5
 	Author: Reza Moallemi
 	Author URI: http://www.moallemi.ir/blog
 	*/
@@ -15,7 +15,7 @@
 
 	function g_trans_menu() 
 	{
-		add_options_page('Google Transliteration Options', __('Google Transliteration', 'google-transliteration'), 8, 'google-transliteration', 'g_trans_options');
+		add_options_page(__('Google Transliteration Options', 'google-transliteration'), __('Google Transliteration', 'google-transliteration'), 8, 'google-transliteration', 'g_trans_options');
 	}
 
 	function get_g_trans_options()
@@ -23,6 +23,8 @@
 		$g_trans_options = array('default_language' => 'fa',
 								'enable_comment_form' => 'true',
 								'enable_default_comment_form' => 'true',
+								'enable_post_form' => 'false',
+								'enable_default_post_form' => 'false',
 								'comment_form_id' => 'comment',
 								'control_type' => 'single',
 								'place_after_text_area' => 'false');
@@ -36,7 +38,7 @@
 		return $g_trans_options;
 	}
 	
-	function g_t_comment_form()
+	function gt_comment_form()
     {
 		$g_trans_options = get_g_trans_options();
 		if ($g_trans_options['enable_comment_form'] == 'true') 
@@ -64,9 +66,62 @@
 			}
 				?>
 				<script language="JavaScript" type="text/javascript">
+					var urlp;            
+					var mozilla = document.getElementById && !document.all;			
+					var url = document.getElementById("url");
+					try {
+						if (mozilla)
+							urlp = url.parentNode;
+						else
+							urlp = url.parentElement;
+					}
+					catch(ex){
+						urlp = document.getElementById("commentform").children[0];
+					}
+					var sub = document.getElementById("translControl");
+					<?php if($g_trans_options['place_after_text_area'] == 'true') {  ?>
+					urlp = document.getElementById("commentform");
+					<?php } ?>
+					urlp.appendChild(sub, url);
+					window.onload = function() {
+						document.getElementById('<?php echo $g_trans_options['comment_form_id']; ?>').style.removeProperty('width');
+					};
+				</script>
+				<?php
+		}
+	}
+	
+	function gt_post_form()
+    {
+		$g_trans_options = get_g_trans_options();
+		if ($g_trans_options['enable_post_form'] == 'true') 
+		{
+			if($g_trans_options['control_type'] == 'single')
+			{
+				?>
+				<div style="padding-top:7px;" id='translControl'>
+					<input type="checkbox" style="width:20px;margin:0;" id="chbxGtransliterate" onclick="g_transliteration();" />
+					<small><?php _e("Enable Google Transliteration.(To type in English, press Ctrl+g)", "google-transliteration"); ?></small>
+				</div>
+				<div id="errorDiv"></div>
+				<?php
+			}
+			else
+			{
+				?>
+				<div style="padding-top:7px;" id='translControl'>
+					<input type="checkbox" style="width:20px;margin:0;" id="chbxGtransliterate" onclick="g_transliteration();" />
+					<small><?php _e("Enable Google Transliteration.(To type in English, press Ctrl+g)", "google-transliteration"); ?></small>
+					<select id="languageDropDown" onchange="languageChangeHandler()"></select>
+				</div>
+				<div id="errorDiv"></div>	
+				<?php
+			}
+				?>
+				<script language="JavaScript" type="text/javascript">
 				var urlp;            
 				var mozilla = document.getElementById && !document.all;			
-				var url = document.getElementById("url");
+				var url = document.getElementById("quicktags");
 				try {
 					if (mozilla)
 						urlp = url.parentNode;
@@ -74,71 +129,24 @@
 						urlp = url.parentElement;
 				}
 				catch(ex){
-					urlp = document.getElementById("commentform").children[0];
+					
 				}
 				var sub = document.getElementById("translControl");
-				<?php if($g_trans_options['place_after_text_area'] == 'true') {  ?>
-				urlp = document.getElementById("commentform");
-				<?php } ?>
 				urlp.appendChild(sub, url);
 			</script>
 				<?php
 		}
 	}
 	
-	function post_form()
-    {
-		?>
-		<div style="display:left;align:left; padding-top:7px;" id='translControl'>
-		<small>(To type in English, press Ctrl+g)</small>
-		</div>
-		<div id="errorDiv"></div>
-		<script language="JavaScript" type="text/javascript">
-			var urlp;            
-			var mozilla = document.getElementById && !document.all;			
-            var url = document.getElementById("quicktags");
-			if (mozilla)
-	            urlp = url.parentNode;
-			else
-				    urlp = url.parentElement;
-            var sub = document.getElementById("translControl");
-            urlp.appendChild(sub, url);
-        </script>	
-		<?php
-	}
-	
-	function wp_post_admin_scripts()
-	{
-		$g_trans_options = get_g_trans_options();
-		?>		
-		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-		<script type="text/javascript">
-		  // Load the Google Transliteration API
-		  google.load("elements", "1", {
-			packages: "transliteration"
-		  });	  
-		  google.setOnLoadCallback(onLoad);
-		  var transliterationControl;
-		  function onLoad() {
-			var options = {
-				sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
-				destinationLanguage: ['<?php echo $g_trans_options['default_language']; ?>'],
-				transliterationEnabled: true,
-				shortcutKey: 'ctrl+g'
-			};
-			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
-			var ids = [ "content", "title"];
-			transliterationControl.makeTransliteratable(ids);		
-			transliterationControl.enableTransliteration();
-		  }
-		</script> 
-		<?php
-	}
 	
 	function GoogleTransliteration() 
 	{
-		add_action('wp_head', 'wp_head_scripts');
-		add_action('comment_form', 'g_t_comment_form');
+		add_action('admin_print_scripts-post-new.php', 'gt_head_admin_scripts');
+		add_action('admin_print_scripts-post.php', 'gt_head_admin_scripts');
+		add_action('wp_head', 'gt_head_scripts');
+		add_action('comment_form', 'gt_comment_form');
+		add_action('edit_form_advanced', 'gt_post_form');
+        add_action('simple_edit_form', 'gt_post_form');
 	}
 
 	function g_trans_options()
@@ -149,6 +157,8 @@
 			$g_trans_options['default_language'] = isset($_POST['default_language']) ? $_POST['default_language'] : 'fa';
 			$g_trans_options['enable_comment_form'] = isset($_POST['enable_comment_form']) ? $_POST['enable_comment_form'] : 'false';
 			$g_trans_options['enable_default_comment_form'] = isset($_POST['enable_default_comment_form']) ? $_POST['enable_default_comment_form'] : 'false';
+			$g_trans_options['enable_post_form'] = isset($_POST['enable_post_form']) ? $_POST['enable_post_form'] : 'false';
+			$g_trans_options['enable_default_post_form'] = isset($_POST['enable_default_post_form']) ? $_POST['enable_default_post_form'] : 'false';
 			$g_trans_options['comment_form_id'] = (isset($_POST['comment_form_id']) and $_POST['comment_form_id'] != '') ? $_POST['comment_form_id'] : 'comment';
 			$g_trans_options['control_type'] = (isset($_POST['control_type']) and $_POST['control_type'] != '') ? $_POST['control_type'] : 'single';
 			$g_trans_options['place_after_text_area'] = (isset($_POST['place_after_text_area']) and $_POST['place_after_text_area'] != '') ? $_POST['place_after_text_area'] : 'false';
@@ -189,13 +199,16 @@
 								</select>
 				</p>
 				<h3><?php _e('Comment Settings:', 'google-transliteration'); ?></h3>
-				<p><input name="enable_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_comment_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable for comment form.', 'google-transliteration'); ?></p>
+				<p><input name="enable_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_comment_form'] == 'true' ) echo ' checked="checked" '; ?> onclick="changeStatus();" /> <?php _e('Enable for comment form.', 'google-transliteration'); ?></p>
 				<p><input name="enable_default_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_default_comment_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable Google Transliteration by default.', 'google-transliteration'); ?></p>
 				<p><input name="place_after_text_area" value="true" type="checkbox" <?php if ($g_trans_options['place_after_text_area'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Put the settings after comment textarea.', 'google-transliteration'); ?></p>
 				<p><?php _e('Comment text field id: ', 'google-transliteration'); ?> 
 					<input name="comment_form_id" style="direction:ltr;" type="text" value="<?php echo $g_trans_options['comment_form_id']; ?>" /> 
 					<small><?php _e('Default for Wordpress Themes is <b>comment</b>', 'google-transliteration'); ?></small>
 				</p>
+				<h3><?php _e('Post Settings:', 'google-transliteration'); ?></h3>
+				<p><input name="enable_post_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_post_form'] == 'true' ) echo ' checked="checked" '; ?> onclick="changeStatus();"/> <?php _e('Enable for post form.', 'google-transliteration'); ?></p>
+				<p><input name="enable_default_post_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_default_post_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable Google Transliteration by default for admin.', 'google-transliteration'); ?></p>
 				<div class="submit">
 					<input class="button-primary" type="submit" name="update_g_trans_settings" value="<?php _e('Save Changes', 'google-transliteration') ?>" />
 				</div>
@@ -231,10 +244,26 @@
 				</div>
 			</form>
 		</div>
+		<script type="text/javascript">
+		function changeStatus() {
+			var status = jQuery('input[name=enable_post_form]').is(':checked');
+			jQuery('input[name=enable_default_post_form]').attr('disabled', !status);
+			if(!status)
+				jQuery('input[name=enable_default_post_form]').attr('checked', status);
+		
+			status = jQuery('input[name=enable_comment_form]').is(':checked');
+			jQuery('input[name=enable_default_comment_form]').attr('disabled', !status);
+			jQuery('input[name=place_after_text_area]').attr('disabled', !status);
+			jQuery('input[name=comment_form_id]').attr('disabled', !status);
+			if(!status)
+				jQuery('input[name=enable_default_comment_form]').attr('checked', status);
+		}
+		changeStatus();
+		</script>
 		<?php
 	}
 							
-	function wp_head_scripts() 
+	function gt_head_scripts() 
 	{	
 		$g_trans_options = get_g_trans_options();
 		if ((is_single() || is_page()) and $g_trans_options['enable_comment_form'] == 'true') 
@@ -262,6 +291,89 @@
 			var ids = ['<?php echo $g_trans_options['comment_form_id']; ?>'];
 			transliterationControl.makeTransliteratable(ids);
 			<?php if($g_trans_options['enable_default_comment_form'] == 'true') {  ?>
+				transliterationControl.enableTransliteration();
+			<?php } else { ?>
+				transliterationControl.disableTransliteration();
+			<?php } ?>
+			transliterationControl.addEventListener(
+				google.elements.transliteration.TransliterationControl.EventType.STATE_CHANGED,
+				transliterateStateChangeHandler);
+			document.getElementById('chbxGtransliterate').checked = transliterationControl.isTransliterationEnabled();
+			
+			<?php if($g_trans_options['control_type'] == 'multi') {?>
+			var destinationLanguage =
+			  transliterationControl.getLanguagePair().destinationLanguage;
+			var languageSelect = document.getElementById('languageDropDown');
+			var supportedDestinationLanguages =
+			  google.elements.transliteration.getDestinationLanguages(
+				google.elements.transliteration.LanguageCode.ENGLISH);
+				
+			for (var lang in supportedDestinationLanguages) {
+			  var opt = document.createElement('option');
+			  opt.text = lang;
+			  opt.value = supportedDestinationLanguages[lang];
+			  if (destinationLanguage == opt.value) {
+				opt.selected = true;
+			  }
+			  try {
+				languageSelect.add(opt, null);
+			  } catch (ex) {
+				languageSelect.add(opt);
+			  }
+			}
+		
+			<?php } ?>
+			
+			}
+		function transliterateStateChangeHandler(e) {
+			document.getElementById('chbxGtransliterate').checked = e.transliterationEnabled;
+		 }
+		function g_transliteration() {
+			transliterationControl.toggleTransliteration();
+		  }
+		  
+		<?php if($g_trans_options['control_type'] == 'multi') {?>
+			function languageChangeHandler() {
+			var dropdown = document.getElementById('languageDropDown');
+			transliterationControl.setLanguagePair(
+				google.elements.transliteration.LanguageCode.ENGLISH,
+				dropdown.options[dropdown.selectedIndex].value);
+		}
+		<?php } ?>
+		
+		</script>
+		<?php
+		}
+	}
+	
+	function gt_head_admin_scripts() 
+	{	
+		$g_trans_options = get_g_trans_options();
+		if ($g_trans_options['enable_post_form'] == 'true') 
+		{
+			
+		?>		
+		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+		<script type="text/javascript">
+		// Load the Google Transliteration API
+		google.load("elements", "1", { packages: "transliteration" });	  
+		google.setOnLoadCallback(onLoad);
+		var transliterationControl;
+		function onLoad() {
+			var options = {
+				sourceLanguage: google.elements.transliteration.LanguageCode.ENGLISH,
+				<?php if($g_trans_options['control_type'] == 'single') {?>
+				destinationLanguage: ['<?php echo $g_trans_options['default_language']; ?>'],
+				<?php } else { ?>
+				destinationLanguage: ['ar', 'bn', 'gu', 'hi', 'kn', 'ml', 'mr', 'ne', 'fa', 'pa', 'ta', 'te', 'ur'],
+				<?php } ?>
+				transliterationEnabled: true,
+				shortcutKey: 'ctrl+g'
+			};
+			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
+			var ids = ['content', 'title', 'new-tag-post_tag'];
+			transliterationControl.makeTransliteratable(ids);
+			<?php if($g_trans_options['enable_default_post_form'] == 'true') {  ?>
 				transliterationControl.enableTransliteration();
 			<?php } else { ?>
 				transliterationControl.disableTransliteration();

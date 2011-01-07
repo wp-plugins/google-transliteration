@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: moallemi
 Donate link: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
-Tags: comment,comments,google,transliteration,language
+Tags: comment,comments,google,transliteration,language, google transliteration, کاوشگر
 Requires at least: 2.6
-Tested up to: 3.0
+Tested up to: 3.1
 Stable tag: "trunk"
 
 Google Transliteration support for wordpress.
@@ -12,9 +12,11 @@ Google Transliteration support for wordpress.
 
 This plugin offers Complete language transliteration support for your wordpress blogs in Persian, Tamil, Telugu, Hindi, Malayalam, Kannada, Arabic, Nepali, Marathi, Punjabi, Bengali, Gujarati and Urdu using google transliteration API. Visitors can use Ctrl+G key combination to toggle between english and selected language.
 
-What's New in version 1.1:
+What's New in version 1.5:
 
-    * Compatible with WordPress 3.0
+	* Add transliteration support for admin panel
+	* Fixed a bug in comment area textbox in some themes
+	* Add Compatibility with WordPress 3.1
 
 == Installation ==
 
@@ -22,6 +24,11 @@ What's New in version 1.1:
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.5 =
+* Add transliteration support for admin panel
+* Fixed a bug in comment area textbox in some themes
+* Add Compatibility with WordPress 3.1
 
 = 1.1 =
 
@@ -43,7 +50,7 @@ What's New in version 1.1:
 * some persian language translation fixed.
 
 = 0.7 =
-* Add ability to set the correct comment field id due to different wordpress themes� settings.
+* Add ability to set the correct comment field id due to different wordpress themes’ settings.
 
 = 0.6.1 =
 * Add support for Italian language
