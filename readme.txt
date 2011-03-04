@@ -6,7 +6,7 @@ Requires at least: WordPress 2.6, BuddyPress 1.2.6
 Tested up to: WordPress 3.1, BuddyPress 1.2.8
 Stable tag: "trunk"
 
-Google Transliteration support for wordpress.
+Google Transliteration support for WordPress and BuddyPress
 
 == Description ==
 
