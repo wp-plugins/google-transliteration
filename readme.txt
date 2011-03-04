@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: moallemi
 Donate link: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
-Tags: comment,comments,google,transliteration,language, google transliteration,wpmu, buddypress, کاوشگر
+Tags: comment,comments,google,transliteration,language, google transliteration, wpmu, BuddyPress, کاوشگر
 Requires at least: WordPress 2.6, BuddyPress 1.2.6
 Tested up to: WordPress 3.1, BuddyPress 1.2.8
 Stable tag: "trunk"
