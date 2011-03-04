@@ -162,7 +162,12 @@
 			$g_trans_options['comment_form_id'] = (isset($_POST['comment_form_id']) and $_POST['comment_form_id'] != '') ? $_POST['comment_form_id'] : 'comment';
 			$g_trans_options['control_type'] = (isset($_POST['control_type']) and $_POST['control_type'] != '') ? $_POST['control_type'] : 'single';
 			$g_trans_options['place_after_text_area'] = (isset($_POST['place_after_text_area']) and $_POST['place_after_text_area'] != '') ? $_POST['place_after_text_area'] : 'false';
-
+			
+			if (defined( 'BP_VERSION' )) 
+			{
+				$g_trans_options['bp_enable_transliteration'] = (isset($_POST['bp_enable_transliteration']) and $_POST['bp_enable_transliteration'] != '') ? $_POST['bp_enable_transliteration'] : 'false';
+				$g_trans_options['bp_enable_default_transliteration'] = (isset($_POST['bp_enable_default_transliteration']) and $_POST['bp_enable_default_transliteration'] != '') ? $_POST['bp_enable_default_transliteration'] : 'false';
+			}
 			update_option('g_trans_options', $g_trans_options);
 			
 			?>
@@ -198,7 +203,8 @@
 								  <option value="ur" <?php if ($g_trans_options['default_language'] == 'ur' ) echo ' selected="selected" '; ?> >Urdu</option>
 								</select>
 				</p>
-				<h3><?php _e('Comment Settings:', 'google-transliteration'); ?></h3>
+				<h3><?php _e('WordPress Settings:', 'google-transliteration'); ?></h3>
+				<h4><?php _e('Comment Settings:', 'google-transliteration'); ?></h4>
 				<p><input name="enable_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_comment_form'] == 'true' ) echo ' checked="checked" '; ?> onclick="changeStatus();" /> <?php _e('Enable for comment form.', 'google-transliteration'); ?></p>
 				<p><input name="enable_default_comment_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_default_comment_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable Google Transliteration by default.', 'google-transliteration'); ?></p>
 				<p><input name="place_after_text_area" value="true" type="checkbox" <?php if ($g_trans_options['place_after_text_area'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Put the settings after comment textarea.', 'google-transliteration'); ?></p>
@@ -206,9 +212,16 @@
 					<input name="comment_form_id" style="direction:ltr;" type="text" value="<?php echo $g_trans_options['comment_form_id']; ?>" /> 
 					<small><?php _e('Default for Wordpress Themes is <b>comment</b>', 'google-transliteration'); ?></small>
 				</p>
-				<h3><?php _e('Post Settings:', 'google-transliteration'); ?></h3>
+				<h4><?php _e('Post Settings:', 'google-transliteration'); ?></h4>
 				<p><input name="enable_post_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_post_form'] == 'true' ) echo ' checked="checked" '; ?> onclick="changeStatus();"/> <?php _e('Enable for post form.', 'google-transliteration'); ?></p>
 				<p><input name="enable_default_post_form" value="true" type="checkbox" <?php if ($g_trans_options['enable_default_post_form'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable Google Transliteration by default for admin.', 'google-transliteration'); ?></p>
+				
+				<?php if (defined( 'BP_VERSION' )) {?>
+				<h3><?php _e('BuddyPress Settings:', 'google-transliteration'); ?></h3>
+				<p><input name="bp_enable_transliteration" value="true" type="checkbox" <?php if ($g_trans_options['bp_enable_transliteration'] == 'true' ) echo ' checked="checked" '; ?> onclick="changeStatus();"/> <?php _e('Enable for BuddyPress post and comment forms.', 'google-transliteration'); ?></p>
+				<p><input name="bp_enable_default_transliteration" value="true" type="checkbox" <?php if ($g_trans_options['bp_enable_default_transliteration'] == 'true' ) echo ' checked="checked" '; ?> /> <?php _e('Enable Google Transliteration by default for BuddyPress forms.', 'google-transliteration'); ?></p>
+				<?php } ?>
+				
 				<div class="submit">
 					<input class="button-primary" type="submit" name="update_g_trans_settings" value="<?php _e('Save Changes', 'google-transliteration') ?>" />
 				</div>
@@ -257,6 +270,13 @@
 			jQuery('input[name=comment_form_id]').attr('disabled', !status);
 			if(!status)
 				jQuery('input[name=enable_default_comment_form]').attr('checked', status);
+			
+			<?php if (defined( 'BP_VERSION' )) {?>
+			var status = jQuery('input[name=bp_enable_transliteration]').is(':checked');
+			jQuery('input[name=bp_enable_default_transliteration]').attr('disabled', !status);
+			if(!status)
+				jQuery('input[name=bp_enable_default_transliteration]').attr('checked', status);
+			<?php } ?>
 		}
 		changeStatus();
 		</script>
@@ -266,8 +286,17 @@
 	function gt_head_scripts() 
 	{	
 		$g_trans_options = get_g_trans_options();
-		if ((is_single() || is_page()) and $g_trans_options['enable_comment_form'] == 'true') 
+		if ((is_single() || is_page()) and ($g_trans_options['enable_comment_form'] == 'true' || $g_trans_options['bp_enable_transliteration'] == 'true' )) 
 		{
+			//check whether bp is active or not
+			if (defined( 'BP_VERSION' )) 
+			{	global $bp;
+				
+				if(!bp_is_group_home() and $bp->current_component != 'activity' and !bp_is_blog_page() and $g_trans_options['bp_enable_transliteration'] != 'true')
+					return;
+				elseif(!bp_is_blog_page() and $g_trans_options['bp_enable_transliteration'] != 'true')
+					return;
+			}
 			
 		?>		
 		<script type="text/javascript" src="http://www.google.com/jsapi"></script>
@@ -288,9 +317,17 @@
 				shortcutKey: 'ctrl+g'
 			};
 			transliterationControl = new google.elements.transliteration.TransliterationControl(options);	
-			var ids = ['<?php echo $g_trans_options['comment_form_id']; ?>'];
+			<?php if ( defined( 'BP_VERSION' ) ) { ?>
+				var textareas = document.getElementsByTagName('textarea');
+				var ids = [];
+				for(i = 0; i< textareas.length; i++)
+					ids.push(textareas[i].id);
+					
+			<?php } else { ?>
+				var ids = ['<?php echo $g_trans_options['comment_form_id']; ?>'];
+			<?php } ?>
 			transliterationControl.makeTransliteratable(ids);
-			<?php if($g_trans_options['enable_default_comment_form'] == 'true') {  ?>
+			<?php if($g_trans_options['enable_default_comment_form'] == 'true' || $g_trans_options['bp_enable_transliteration'] == 'true') {  ?>
 				transliterationControl.enableTransliteration();
 			<?php } else { ?>
 				transliterationControl.disableTransliteration();
@@ -440,5 +477,15 @@
 	}
 	
 	GoogleTransliteration();
+	
+	function g_trans_bp_loader() 
+	{
+		require_once( 'google_transliteration-bp.php' );
+	}
+
+	if ( defined( 'BP_VERSION' ) )
+		g_trans_bp_loader();
+	else
+		add_action( 'bp_init', 'g_trans_bp_loader' );
 			
 ?>
