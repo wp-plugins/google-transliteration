@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: moallemi
 Donate link: http://www.moallemi.ir/en/blog/2009/10/10/google-transliteration-for-wordpress/
-Tags: comment,comments,google,transliteration,language, google transliteration, wpmu, BuddyPress, کاوشگر
+Tags: comment,comments,google,transliteration,language, google transliteration, wpmu, BuddyPress, کاوشگر, moallemi
 Requires at least: WordPress 2.6, BuddyPress 1.2.6
-Tested up to: WordPress 3.1, BuddyPress 1.2.8
+Tested up to: WordPress 3.2.1, BuddyPress 1.2.9
 Stable tag: "trunk"
 
 Google Transliteration support for WordPress and BuddyPress
@@ -12,9 +12,12 @@ Google Transliteration support for WordPress and BuddyPress
 
 This plugin offers Complete language transliteration support for your wordpress blogs in Persian, Tamil, Telugu, Hindi, Malayalam, Kannada, Arabic, Nepali, Marathi, Punjabi, Bengali, Gujarati and Urdu using google transliteration API. Visitors can use Ctrl+G key combination to toggle between english and selected language.
 
-What's New in version 1.6:
+What's New in version 1.7:
 
-	* Add transliteration support for BuddyPress
+	* New transliteration button UI
+	* supports wordpress 3.2.1 and buddypress 1.2.9
+	
+
 
 == Installation ==
 
@@ -22,6 +25,10 @@ What's New in version 1.6:
 1. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Changelog ==
+
+= 1.7 =
+* New transliteration button UI
+* supports wordpress 3.2.1 and buddypress 1.2.9
 
 = 1.6 =
 * Add transliteration support for BuddyPress
